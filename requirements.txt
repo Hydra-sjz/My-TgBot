@@ -86,7 +86,7 @@ anime-api==1.0.1
 lexica-api
 #======================#
 
-
+telegraph
 tracemoepy
 dnspython
 natsort
