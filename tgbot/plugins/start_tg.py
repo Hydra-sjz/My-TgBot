@@ -22,13 +22,12 @@ buttons_st = [[
 ]]
 
 @Bot.on_message(filters.command('start') & filters.private)
-async def start_handler(botamessage):
+async def start_handler(bot, message):
     await message.reply_text(
+        photo="https://telegra.ph/file/8fd3a9326d3f0ad19e2d8.jpg",
         text=text_st.format(message.from_user.first_name), 
         reply_markup=InlineKeyboardMarkup(buttons), 
-        quote=True
     )
-          
 @Bot.on_callback_query(filters.regex('^home$'))
 async def st_cb_handler(bot, query):
     await query.message.edit(
@@ -37,25 +36,34 @@ async def st_cb_handler(bot, query):
         disable_web_page_preview=True
     )
     
-
-    
-@Bot.on_callback_query(filters.regex('^help$'))
-@Bot.on_message(filters.command('help') & filters.private & filters.incoming)
-async def help_handler(client: Bot, message: Message | CallbackQuery):
-    text = (
-        "**It's very simple to use me! 😉**\n\n"
-        "test."
+text_hp = (
+    "**It's very simple to use me! 😉**\n\n"
+    "test."
+)
+buttons_hp = [[
+    InlineKeyboardButton('Home 🏕', callback_data='home'),
+    InlineKeyboardButton('❌', callback_data='close')
+]]
+@Bot.on_message(filters.command('help') & filters.private)
+async def hp_handler(bot, message):
+    await message.reply_text(
+        text=text_hp, 
+        reply_markup=InlineKeyboardMarkup(buttons_hp), 
     )
-
-    buttons = [[
-        InlineKeyboardButton('Home 🏕', callback_data='home'),
-        InlineKeyboardButton('❌', callback_data='close')
-    ]]
+@Bot.on_callback_query(filters.regex('^help$'))
+async def help_handler(bot, query):
+    await query.message.edit(
+        text=text_hp, 
+        reply_markup=InlineKeyboardMarkup(buttons_hp)
+        disable_web_page_preview=True
+   )
 
     if isinstance(message, Message):
         await message.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
     else:
         await message.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+
+
 
 @Bot.on_callback_query(filters.regex('^abot$'))
 @Bot.on_message(filters.command('about') & filters.private & filters.incoming)
