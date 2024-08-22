@@ -1,11 +1,36 @@
 import logging
 
-from tgbot import tgbot as Bot
+from tgbot import tgbot as Bot, LOG_CHANNEL_ID
 
 from pyrogram import filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
+from tgbot.utils.broadcast_db.broadcast import broadcast
+from tgbot.utils.broadcast_db.check_user import handle_user_status
+from tgbot.utils.broadcast_db.database import Database
+from config import AUTH_USERS, DB_URL, DB_NAME
+
+
 logger = logging.getLogger(__name__)
+
+
+#from anibot.data import *
+
+db = Database(DB_URL, DB_NAME)
+
+ST = """
+➡️ **☠️LOG STURO☠️** ⬅️
+
+📛**Triggered Command** : /start 
+👤**Name** : {}
+👾**Username** : @{}
+💾**DC** : {}
+♐**ID** : `{}`
+🤖**BOT** : @GojoSatoru_Xbot
+➕➕➕➕➕➕➕➕➕➕➕➕➕
+"""
+
+
 
 #=============START_CMD====================
 text_st = (
@@ -21,9 +46,23 @@ buttons_st = [[
     ],[
     InlineKeyboardButton('❌', callback_data='close')
 ]]
-
+@Bot.on_message(filters.private)
+async def _(bot, cmd):
+    await handle_user_status(bot, cmd)
 @Bot.on_message(filters.command('start') & filters.private)
 async def start_handler(bot, message):
+    chat_id = message.from_user.id
+    if not await db.is_user_exist(chat_id):
+        data = await client.get_me()
+        await db.add_user(chat_id)
+        if LOG_CHANNEL:
+            await client.send_message(
+                LOG_CHANNEL,
+                f"🥳NEWUSER🥳 \n\n😼New User [{message.from_user.first_name}](tg://user?id={message.from_user.id}) 😹started @spotifysavetgbot !!",
+            )
+        else:
+            logging.info(f"🥳NewUser🥳 :- 😼Name : {message.from_user.first_name} 😹ID : {message.from_user.id}")
+    await bot.send_message(LOG_CHANNEL_ID, ST.format(message.from_user.mention, message.from_user.username, message.from_user.dc_id, message.from_user.id))
     await message.reply_photo(
         photo="https://telegra.ph/file/8fd3a9326d3f0ad19e2d8.jpg",
         caption=text_st.format(message.from_user.first_name), 
