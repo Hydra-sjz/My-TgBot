@@ -141,7 +141,7 @@ async def close_cb(bot, callback):
 
 
 #==================•BROADCAST•==================
-@anibot.on_message(filters.private & filters.command(["broadcast", "send", "b"]))
+@Bot.on_message(filters.private & filters.command(["broadcast", "send", "b"]))
 async def broadcast_handler_open(_, m):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
@@ -151,7 +151,7 @@ async def broadcast_handler_open(_, m):
     else:
         await broadcast(m, db)
 
-@anibot.on_message(filters.private & filters.command("stat"))
+@Bot.on_message(filters.private & filters.command("stat"))
 async def tsts(c, m):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
@@ -164,7 +164,7 @@ async def tsts(c, m):
     await asyncio.sleep(180)
     await sat.delete()
 
-@anibot.on_message(filters.private & filters.command("b_user"))
+@Bot.on_message(filters.private & filters.command("b_user"))
 async def ban(c, m):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
@@ -203,7 +203,7 @@ async def ban(c, m):
             quote=True
         )
 
-@anibot.on_message(filters.private & filters.command("unb_user"))
+@Bot.on_message(filters.private & filters.command("unb_user"))
 async def unban(c, m):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
@@ -237,7 +237,7 @@ async def unban(c, m):
             quote=True,
         )
 
-@anibot.on_message(filters.private & filters.command("b_users"))
+@Bot.on_message(filters.private & filters.command("b_users"))
 async def banned_usrs(c, m):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
