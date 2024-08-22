@@ -100,7 +100,8 @@ LOG_GROUP = environ.get("LOG_GROUP", None)
 if LOG_GROUP:
     LOG_GROUP = int(LOG_GROUP)
 
-
+LOG_CHANNEL_ID = int(os.environ.get("LOG_CHANNEL"))
+OWNER = list(filter(lambda x: x, map(int, os.environ.get("OWNER_ID", "1005170481 804248372 1993696756").split())))
 
 bot = TelegramClient(__name__, API_ID, API_HASH, base_logger=telethon_logger).start(bot_token=BOT_TOKEN)
 logger.info("TELETHON BOT STARTED...")
