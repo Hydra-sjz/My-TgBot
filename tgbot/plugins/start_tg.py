@@ -80,7 +80,8 @@ async def st_cb_handler(bot, query):
 #=============HELP_CMD====================
 text_hp = (
     "**__Hey👋😁 {}!__**\n\n"
-    "<blockquote>Ready to explore? Click the button below to discover my commands!</blockquote>"
+    "Are you Ready to explore?\n"
+    "Click the button below to discover my commands!"
 )
 buttons_hp = [[
     InlineKeyboardButton('⬅️', callback_data='home'),
