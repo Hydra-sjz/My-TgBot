@@ -58,11 +58,6 @@ async def help_handler(bot, query):
         disable_web_page_preview=True
    )
 
-    if isinstance(message, Message):
-        await message.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
-    else:
-        await message.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
-
 
 
 @Bot.on_callback_query(filters.regex('^abot$'))
