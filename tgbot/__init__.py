@@ -106,9 +106,9 @@ bot = TelegramClient(__name__, API_ID, API_HASH, base_logger=telethon_logger).st
 logger.info("TELETHON BOT STARTED...")
 
 # Init bot
-logger.info("MUSIC X DL IS ALWAYS NOMBER ONE....")
+logger.info("TG BOT IS ALWAYS NOMBER ONE....")
 
-class Mbot(Client):
+class tgbot(Client):
     def __init__(self):
         name = self.__class__.__name__.lower()
         super().__init__(
@@ -129,8 +129,8 @@ class Mbot(Client):
         if not path.exists('/tmp/thumbnails/'):
             mkdir('/tmp/thumbnails/')
         for chat in AUTH_CHATS:
-            await self.send_photo(chat,"https://telegra.ph/file/6847df3133083fda8b71b.jpg","**Music X Dlbot is ReStarted** 🙌🏼🤩")
-        LOGGER.info(f"\n╭━╮╭━╮╱╱╱╱╱╱╱╱╱╱╭━╮╭━╮╭━━━┳╮\n┃┃╰╯┃┃╱╱╱╱╱╱╱╱╱╱╰╮╰╯╭╯╰╮╭╮┃┃\n┃╭╮╭╮┣╮╭┳━━┳┳━━╮╱╰╮╭╯╱╱┃┃┃┃┃\n┃┃┃┃┃┃┃┃┃━━╋┫╭━╯╱╭╯╰╮╱╱┃┃┃┃┃\n┃┃┃┃┃┃╰╯┣━━┃┃╰━╮╭╯╭╮╰╮╭╯╰╯┃╰╮\n╰╯╰╯╰┻━━┻━━┻┻━━╯╰━╯╰━╯╰━━━┻━╯\n\nBot Started As {BOT_INFO.username}\n")
+            await self.send_photo(chat,"https://telegra.ph/file/8fd3a9326d3f0ad19e2d8.jpg","🟢**TG-BOT IS 😈 STARTED**🟢")
+        LOGGER.info(f"\n\nBot Started As {BOT_INFO.username}\n")
         
     async def stop(self, *args):
         await super().stop()
