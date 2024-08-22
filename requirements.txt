@@ -68,3 +68,35 @@ tqdm
 
 
 Shazamio
+
+openai==0.28.0
+opencv-python-headless
+pyfiglet
+pyshorteners
+
+tpblite==0.8.0
+redgifs==1.7.2
+qrcode
+pytz
+unidecode
+wikipedia
+matplotlib
+
+#======api-tools=======#
+MukeshAPI
+anime-api==1.0.1
+lexica-api
+#======================#
+
+
+tracemoepy
+dnspython
+natsort
+
+lxml
+lottie
+
+
+imdbpy
+html5lib
+httpx[http2]
