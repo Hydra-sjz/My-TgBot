@@ -1,7 +1,7 @@
 import datetime
 from config import DB_URL, DB_NAME, LOG_CHANNEL
 import logging
-from anibot.utils2.broadcast_db.database import Database
+from tgbot.utils.broadcast_db.database import Database
 
 db = Database(DB_URL, DB_NAME)
 async def handle_user_status(bot, cmd):
