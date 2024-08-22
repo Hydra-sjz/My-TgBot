@@ -1,4 +1,4 @@
-from anibot.utils2.Database import mongodb
+from tgbot.utils.Database import mongodb
 
 usersdb = mongodb["users"]
 cleandb = mongodb["cleanmode"]
