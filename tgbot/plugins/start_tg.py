@@ -54,7 +54,7 @@ async def hp_handler(bot, message):
 async def help_handler(bot, query):
     await query.message.edit(
         text=text_hp, 
-        reply_markup=InlineKeyboardMarkup(buttons_hp)
+        reply_markup=InlineKeyboardMarkup(buttons_hp),
         disable_web_page_preview=True
    )
 
