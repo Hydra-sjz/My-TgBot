@@ -62,7 +62,7 @@ async def more_details_handler(client, callback_query):
       # Plot
       try:
           plot = movie.get('plot', [''])[0]
-          movie_msg += f"📝 **Plot:** {plot}..." if plot else "📝 **Plot:** N/A"
+          movie_msg += f"📝 **Plot:** <blockquote>{plot}...</blockquote>" if plot else "📝 **Plot:** N/A"
           movie_msg += "\n"
       except (KeyError, IndexError):
           movie_msg += "📝 **Plot:** N/A\n"
@@ -87,7 +87,7 @@ async def more_details_handler(client, callback_query):
           try:
               name = person.get('name', 'N/A')
               role = person.get('currentRole', 'N/A')
-              movie_msg += f"- {name} ({role})\n"
+              movie_msg += f"<blockquote>- {name} ({role})</blockquote>\n"
           except KeyError:
               movie_msg += "- N/A\n"
   
