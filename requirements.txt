@@ -62,11 +62,9 @@ pykeyboard
 pyyaml
 psutil
 beautifulsoup4==4.12.2
-gtts
+
 ffmpeg-python
 tqdm
-
-
 Shazamio
 
 openai==0.28.0
@@ -95,8 +93,8 @@ natsort
 
 lxml
 lottie
-
-
+google-generativeai
+gtts
 imdbpy
 html5lib
 httpx[http2]
