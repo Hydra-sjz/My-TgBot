@@ -1,4 +1,4 @@
-from anibot.utils2.Database.mongo import db
+from tgbot.utils.Database.mongo import db
 
 coupledb = db.couple
 
