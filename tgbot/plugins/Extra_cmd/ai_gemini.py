@@ -6,9 +6,14 @@ import google.generativeai as genai
 from pyrogram import Client, filters, enums
 from pyrogram.types import Message
 
-from tgbot import tgbot as app, LOG_CHANNEL_ID as LOG_CHANNEL
+from tgbot import tgbot as app, LOG_CHANNEL_ID as LOG_CHANNEL, CMD
 from config import GEMINI_API
 
+import time
+import requests
+from pyrogram.types import InputMediaPhoto
+from MukeshAPI import api
+from pyrogram.enums import ChatAction,ParseMode
 
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
@@ -80,7 +85,7 @@ AISELL = """
 
 
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
-@app.on_message(filters.command("askai"))
+@app.on_message(filters.command(["askai"], CMD))
 async def say_ask(bot, message: Message):
     try:
         i = await message.reply_text("<code>Please Wait...</code>")
@@ -106,7 +111,7 @@ async def say_ask(bot, message: Message):
         await i.delete()
         await message.reply_text(f"An error occurred: {str(e)}")
 
-@app.on_message(filters.command("aii"))
+@app.on_message(filters.command(["aii"], CMD))
 async def getaie(bot, message: Message):
     try:
         i = await message.reply_text("<code>Please Wait. Extracting image...</code>")
@@ -127,7 +132,7 @@ async def getaie(bot, message: Message):
         await i.delete()
         await message.reply_text(str(e))
 
-@app.on_message(filters.command("aicook"))
+@app.on_message(filters.command(["aicook"], CMD))
 async def say_cook(bot, message: Message):
     try:
         i = await message.reply_text("<code>Some thing Cooking. please wait...</code>")
@@ -152,7 +157,7 @@ async def say_cook(bot, message: Message):
         await i.delete()
         await message.reply_text(f"please reply to an image.")
       
-@app.on_message(filters.command("aiseller"))
+@app.on_message(filters.command(["aiseller"], CMD))
 async def say_sell(bot, message: Message):
     try:
         i = await message.reply_text("<code>Generating your request. please wait...</code>")
@@ -189,3 +194,41 @@ async def say_sell(bot, message: Message):
         await message.reply_text(f"<b>Usage: </b><code>/aiseller [target audience] [reply to product image]</code>")
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
+
+
+@app.on_message(filters.command(["imagine"], CMD))
+async def imagine_(b, message: Message):
+    if message.reply_to_message:
+        text = message.reply_to_message.text
+    else:
+
+        text =message.text.split(None, 1)[1]
+    mukesh=await message.reply_text( "`Please wait...,\n\nGenerating prompt .. ...`")
+    try:
+        await b.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
+        x=api.ai_image(text)
+        with open("mukesh.jpg", 'wb') as f:
+            f.write(x)
+        caption = f"""
+    **Powered by: @XBOTS_X | ©️ @GojoSatoru_Xbot**
+    """
+        await mukesh.delete()
+        await message.reply_photo("mukesh.jpg",caption=caption,quote=True)
+    except Exception as e:
+        await mukesh.edit_text(f"error {e}")
+
+@app.on_message(filters.command(["mai","mask"], CMD))
+async def chat_mgpt(bot, message):
+    
+    try:
+        await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
+        if len(message.command) < 2:
+            await message.reply_text(
+            "Example:**\n\n`/chatgpt Where is TajMahal?`")
+        else:
+            a = message.text.split(' ', 1)[1]
+            r=api.gemini(a)["results"]
+            await message.reply_text(f" {r} \n\n**Powered by: @XBOTS_X | ©️ @GojoSatoru_Xbot** ")     
+    except Exception as e:
+        await message.reply_text(f"**#Error: {e} ")
+      
