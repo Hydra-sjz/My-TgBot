@@ -34,10 +34,9 @@ ST = """
 
 #=============START_CMD====================
 text_st = (
-   "Hello {},"
-   "Welcome to the 𝐺𝑜𝑗𝑜 𝑆𝑎𝑡𝑜𝑟𝑢 𝕏 | 𝐵𝑜𝑡! "
-   "This is a powerful bot for Telegram.\n\n"
-   "Click help to know how to use me!"
+   "👋😄__Hello {},__\n\n"
+   "<blockquote> Welcome to the 🎈𝐺𝑜𝑗𝑜 𝑆𝑎𝑡𝑜𝑟𝑢 𝕏 | 𝐵𝑜𝑡! This is a powerful⚡🌪️ bot for Telegram.</blockquote>\n\n"
+   "**__Click help to know how to use me!__**"
 )
 buttons_st = [[
     InlineKeyboardButton('Channel 📢', url='https://t.me/XBOTS_X'),
@@ -80,8 +79,8 @@ async def st_cb_handler(bot, query):
 
 #=============HELP_CMD====================
 text_hp = (
-    "**It's very simple to use me! 😉**\n\n"
-    "test."
+    "**__Hey👋😁 {}!__**\n\n"
+    "<blockquote>Ready to explore? Click the button below to discover my commands!</blockquote>"
 )
 buttons_hp = [[
     InlineKeyboardButton('⬅️', callback_data='home'),
@@ -90,14 +89,14 @@ buttons_hp = [[
 @Bot.on_message(filters.command('help') & filters.private)
 async def hp_handler(bot, message):
     await message.reply_text(
-        text=text_hp, 
+        text=text_hp.format(message.from_user.first_name), 
         reply_markup=InlineKeyboardMarkup(buttons_hp), 
         quote=True,
     )
 @Bot.on_callback_query(filters.regex('^help$'))
 async def help_handler(bot, query):
     await query.message.edit(
-        text=text_hp, 
+        text=text_hp.format(message.from_user.first_name), 
         reply_markup=InlineKeyboardMarkup(buttons_hp),
         disable_web_page_preview=True
    )
@@ -105,12 +104,12 @@ async def help_handler(bot, query):
 #=============ABOUT_CMD====================
 text_ab = (
     "🎈 **AbouT Me** 🎈\n\n"
-    "**🤖 Bot Name:**  𝐺𝑜𝑗𝑜 𝑆𝑎𝑡𝑜𝑟𝑢 𝕏 | 𝐵𝑜𝑡!\n"
+    "<blockquote>**🤖 Bot Name:**  𝐺𝑜𝑗𝑜 𝑆𝑎𝑡𝑜𝑟𝑢 𝕏 | 𝐵𝑜𝑡!\n"
     "**📝 Language:** [Python 3](https://www.python.org/)\n"
     "**🧰 Framework:** [Pyrogram](https://github.com/pyrogram/pyrogram)\n"
     "**👨‍💻 Developer:** [VGX.LEO](https://t.me/Vignesh_leo)\n"
     "**📢 Updates Channel:** [X Bots](https://t.me/Xbots_x)\n"
-    "**👥 Support Group:** [X Support](https://t.me/sp)\n"
+    "**👥 Support Group:** [X Support](https://t.me/sp)</blockquote>"
 )
 buttons_ab = [[
     InlineKeyboardButton('⬅️', callback_data='home'),
