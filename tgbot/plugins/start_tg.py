@@ -32,7 +32,7 @@ async def start_handler(bot, message):
 async def st_cb_handler(bot, query):
     await query.message.edit(
         text=text_st.format(query.from_user.first_name), 
-        reply_markup=InlineKeyboardMarkup(buttons_st)
+        reply_markup=InlineKeyboardMarkup(buttons_st),
         disable_web_page_preview=True
     )
     
