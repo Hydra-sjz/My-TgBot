@@ -19,7 +19,7 @@ async def start_handler(cient: Bot, message: Message|CallbackQuery):
 
     buttons = [[
         InlineKeyboardButton('Channel 📢', url='https://t.me/XBOTS_X'),
-        InlineKeyboardButton('Commands 📚', callback_data='help')
+        InlineKeyboardButton('Commands 📚', callback_data='help'),
         InlineKeyboardButton('About 💡', callback_data='abot')
         ],[
         InlineKeyboardButton('❌', callback_data='close')
