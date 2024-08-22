@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 @Bot.on_callback_query(filters.regex('^home$'))
 @Bot.on_message(filters.command('start') & filters.private)
-async def start_handler(cient: Bot, message: Message|CallbackQuery):
+async def start_handler(cient: Bot, message: Message | CallbackQuery):
     text = (
         f"Hello {message.from_user.mention},"
         "Welcome to the 𝐺𝑜𝑗𝑜 𝑆𝑎𝑡𝑜𝑟𝑢 𝕏 | 𝐵𝑜𝑡! "
@@ -49,17 +49,15 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
 
 @Bot.on_callback_query(filters.regex('^abot$'))
 @Bot.on_message(filters.command('about') & filters.private & filters.incoming)
-async def about(client: Bot, message: Message|CallbackQuery):
+async def about(client: Bot, message: Message | CallbackQuery):
     me = await client.get_me()
 
     text = (
         f"**🤖 Bot Name:** {me.mention()}\n\n"
         "**📝 Language:** [Python 3](https://www.python.org/)\n\n"
         "**🧰 Framework:** [Pyrogram](https://github.com/pyrogram/pyrogram)\n\n"
-        "**👨‍💻 Developer:** [Anonymous](https://t.me/Ns_AnoNymouS)\n\n"
-        "**📢 Updates Channel:** [NS Bots](https://t.me/NsBotsOfficial)\n\n"
-        "**👥 Support Group:** [AMC Support](https://t.me/amcDevSupport)\n\n"
-        "**🔗 Source Code:** [GitHub Repository](https://github.com/Ns-AnoNymouS/jiosaavn)\n\n"
+        "**👨‍💻 Developer:** [Anonymous](https://t.me/Ns_tt)\n\n"
+        "**📢 Updates Channel:** [NS Bots](https://t.me/NOfficial)\n\n"
     )
 
     buttons = [[
