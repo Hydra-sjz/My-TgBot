@@ -1,10 +1,10 @@
 import requests
 from requests import get 
-from tgbot import tgbot as app
+from tgbot import tgbot as app, CMD
 from pyrogram import filters
 from pyrogram.types import InputMediaPhoto
 
-@app.on_message(filters.command(["pimg"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
+@app.on_message(filters.command(["pimg"], CMD))
 async def pinteresti(_, message):
      chat_id = message.chat.id
 
