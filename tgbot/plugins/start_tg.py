@@ -105,7 +105,7 @@ async def help_cb_handler(bot, query):
 #=============ABOUT_CMD====================
 text_ab = (
     "🎈 **AbouT Me** 🎈\n\n"
-    "<blockquote>**🤖 Bot Name:**  𝐺𝑜𝑗𝑜 𝑆𝑎𝑡𝑜𝑟𝑢 𝕏 | 𝐵𝑜𝑡!\n"
+    "<blockquote expandable>**🤖 Bot Name:**  𝐺𝑜𝑗𝑜 𝑆𝑎𝑡𝑜𝑟𝑢 𝕏 | 𝐵𝑜𝑡!\n"
     "**📝 Language:** [Python 3](https://www.python.org/)\n"
     "**🧰 Framework:** [Pyrogram](https://github.com/pyrogram/pyrogram)\n"
     "**👨‍💻 Developer:** [VGX.LEO](https://t.me/Vignesh_leo)\n"
@@ -122,6 +122,7 @@ async def ab_handler(bot, message):
         text=text_ab, 
         reply_markup=InlineKeyboardMarkup(buttons_ab), 
         quote=True,
+        parse_mode=enums.ParseMode.HTML
     )
 @Bot.on_callback_query(filters.regex('^abot$'))
 async def abot_cb_handler(bot, query):
