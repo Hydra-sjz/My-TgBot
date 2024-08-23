@@ -97,7 +97,7 @@ async def hp_handler(bot, message):
 @Bot.on_callback_query(filters.regex('^help$'))
 async def help_cb_handler(bot, query):
     await query.message.edit(
-        text=text_hp.format(message.from_user.first_name), 
+        text=text_hp.format(query.from_user.first_name), 
         reply_markup=InlineKeyboardMarkup(buttons_hp),
         disable_web_page_preview=True
    )
@@ -117,7 +117,7 @@ buttons_ab = [[
     InlineKeyboardButton('❌', callback_data='close')
 ]]
 @Bot.on_message(filters.command('about') & filters.private)
-async def ab_handler(bot, message):
+async def ab_handler(bot, message): 
     await message.reply_text(
         text=text_ab, 
         reply_markup=InlineKeyboardMarkup(buttons_ab), 
