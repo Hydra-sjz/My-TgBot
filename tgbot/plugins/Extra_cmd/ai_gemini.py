@@ -122,7 +122,7 @@ async def say_ask(bot, message: Message):
         response = chat.send_message(prompt)
         await i.delete()
 
-        await message.reply_text(f"**Question:** <blockquote expandable>{prompt}<blockquote>\n**Answer:** <blockquote expandable>{response.text}</blockquote>\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", reply_markup=InlineKeyboardMarkup(buttons_aski), quote=True, parse_mode=enums.ParseMode.MARKDOWN)
+        await message.reply_text(f"**Question:** {prompt}\n**Answer:** {response.text}\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", reply_markup=InlineKeyboardMarkup(buttons_aski), quote=True, parse_mode=enums.ParseMode.MARKDOWN)
         await bot.send_message(LOG_CHANNEL, ASKAI.format(prompt, message.from_user.mention, message.from_user.username, message.from_user.dc_id, message.from_user.id))
     except Exception as e:
         await i.delete()
@@ -145,7 +145,7 @@ async def getaie(bot, message: Message):
         await i.delete()
 
         await message.reply_text(
-            f"**Detail Of Image:** <blockquote expandable>{response.parts[0].text}</blockquote>\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", reply_markup=InlineKeyboardMarkup(buttons_aii), quote=True, parse_mode=enums.ParseMode.MARKDOWN
+            f"**Detail Of Image:** {response.parts[0].text}\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", reply_markup=InlineKeyboardMarkup(buttons_aii), quote=True, parse_mode=enums.ParseMode.MARKDOWN
         )
         await bot.send_message(LOG_CHANNEL, IMGTT.format(base_img, message.from_user.mention, message.from_user.username, message.from_user.dc_id, message.from_user.id))
         os.remove(base_img)
@@ -228,7 +228,7 @@ async def say_sell(bot, message: Message):
 captionim = """
 **__Your prompt__**
 
-<blockquote expandable>__{}__</blockquote>
+__{}__
  
 **__Powered by: @XBOTS_X | ©️ @GojoSatoru_Xbot__**
 """
