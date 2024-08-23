@@ -14,7 +14,7 @@ import requests
 from pyrogram.types import InputMediaPhoto
 from MukeshAPI import api
 from pyrogram.enums import ChatAction,ParseMode
-
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
 genai.configure(api_key=GEMINI_API)
@@ -83,8 +83,25 @@ AISELL = """
 #askai #ReplyToimgToselle
 """
 
+AI_IMAGIN = """
+👾**LOG ALERT FOR AI**👾
+
+📛**Triggered Command** : /aiseller {}
+👤**Name** : {}
+👾**Username** : @{}
+💾**DC** : {}
+♐**ID** : `{}`
+🤖**BOT** : @GojoSatoru_Xbot AI
+
+#askai #ReplyToimgToselle
+"""
 
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
+
+
+buttons_aski = [[
+    InlineKeyboardButton('❌', callback_data='close')
+]]
 @app.on_message(filters.command(["askai"], CMD))
 async def say_ask(bot, message: Message):
     try:
@@ -105,12 +122,16 @@ async def say_ask(bot, message: Message):
         response = chat.send_message(prompt)
         await i.delete()
 
-        await message.reply_text(f"**Question:**`{prompt}`\n**Answer:** {response.text}\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", parse_mode=enums.ParseMode.MARKDOWN)
+        await message.reply_text(f"**Question:** <blockquote expandable>{prompt}<blockquote>\n**Answer:** <blockquote expandable>{response.text}</blockquote>\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", reply_markup=InlineKeyboardMarkup(buttons_aski), quote=True, parse_mode=enums.ParseMode.MARKDOWN)
         await bot.send_message(LOG_CHANNEL, ASKAI.format(prompt, message.from_user.mention, message.from_user.username, message.from_user.dc_id, message.from_user.id))
     except Exception as e:
         await i.delete()
         await message.reply_text(f"An error occurred: {str(e)}")
 
+      
+buttons_aii = [[
+    InlineKeyboardButton('❌', callback_data='close')
+]]
 @app.on_message(filters.command(["aii"], CMD))
 async def getaie(bot, message: Message):
     try:
@@ -124,13 +145,16 @@ async def getaie(bot, message: Message):
         await i.delete()
 
         await message.reply_text(
-            f"**Detail Of Image:** {response.parts[0].text}\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", parse_mode=enums.ParseMode.MARKDOWN
+            f"**Detail Of Image:** <blockquote expandable>{response.parts[0].text}</blockquote>\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", reply_markup=InlineKeyboardMarkup(buttons_aii), quote=True, parse_mode=enums.ParseMode.MARKDOWN
         )
         await bot.send_message(LOG_CHANNEL, IMGTT.format(base_img, message.from_user.mention, message.from_user.username, message.from_user.dc_id, message.from_user.id))
         os.remove(base_img)
     except Exception as e:
         await i.delete()
         await message.reply_text(str(e))
+
+
+
 
 @app.on_message(filters.command(["aicook"], CMD))
 async def say_cook(bot, message: Message):
@@ -156,7 +180,13 @@ async def say_cook(bot, message: Message):
     except Exception as e:
         await i.delete()
         await message.reply_text(f"please reply to an image.")
-      
+
+
+
+
+buttons_sell = [[
+    InlineKeyboardButton('❌', callback_data='close')
+]]
 @app.on_message(filters.command(["aiseller"], CMD))
 async def say_sell(bot, message: Message):
     try:
@@ -185,8 +215,9 @@ async def say_sell(bot, message: Message):
         await i.delete()
 
         await message.reply_text(
-            f"{response.text}\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", parse_mode=enums.ParseMode.MARKDOWN
+            f"<blockquote expandable>{response.text}</blockquote>\n\n**Powered by**: @XBOTS_X | ©️ @GojoSatoru_Xbot", reply_markup=InlineKeyboardMarkup(buttons_sell), quote=True, parse_mode=enums.ParseMode.MARKDOWN
         )
+      
         await bot.send_message(LOG_CHANNEL, AISELL.format(taud, message.from_user.mention, message.from_user.username, message.from_user.dc_id, message.from_user.id))
         os.remove(base_img)
     except Exception as e:
@@ -194,8 +225,16 @@ async def say_sell(bot, message: Message):
         await message.reply_text(f"<b>Usage: </b><code>/aiseller [target audience] [reply to product image]</code>")
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
+captionim = """
+**__Your prompt__**
 
-
+<blockquote expandable>__{}__</blockquote>
+ 
+**__Powered by: @XBOTS_X | ©️ @GojoSatoru_Xbot__**
+"""
+buttons_imgin = [[
+    InlineKeyboardButton('❌', callback_data='close')
+]]
 @app.on_message(filters.command(["imagine"], CMD))
 async def imagine_(b, message: Message):
     if message.reply_to_message:
@@ -209,11 +248,10 @@ async def imagine_(b, message: Message):
         x=api.ai_image(text)
         with open("mukesh.jpg", 'wb') as f:
             f.write(x)
-        caption = f"""
-    **Powered by: @XBOTS_X | ©️ @GojoSatoru_Xbot**
-    """
+  
         await mukesh.delete()
-        await message.reply_photo("mukesh.jpg",caption=caption,quote=True)
+        await message.reply_photo("mukesh.jpg", caption=captionim.format(text), reply_markup=InlineKeyboardMarkup(buttons_imgin), quote=True, parse_mode=enums.ParseMode.HTML)
+        await bot.send_message(LOG_CHANNEL, AI_IMAGIN.format(text, message.from_user.mention, message.from_user.username, message.from_user.dc_id, message.from_user.id))
     except Exception as e:
         await mukesh.edit_text(f"error {e}")
 
