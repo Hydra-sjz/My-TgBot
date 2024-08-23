@@ -2,7 +2,7 @@ import logging
 import asyncio
 from tgbot import tgbot as Bot, LOG_CHANNEL_ID
 
-from pyrogram import filters
+from pyrogram import filters, enums
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from tgbot.utils.broadcast_db.broadcast import broadcast
@@ -80,8 +80,8 @@ async def st_cb_handler(bot, query):
 #=============HELP_CMD====================
 text_hp = (
     "**__Hey👋😁 {}!__**\n\n"
-    "Are you Ready to explore?\n"
-    "Click the button below to discover my commands!"
+    "<blockquote>Are you Ready to explore?\n"
+    "Click the button below to discover my commands!</blockquote>"
 )
 buttons_hp = [[
     InlineKeyboardButton('⬅️', callback_data='home'),
@@ -95,7 +95,7 @@ async def hp_handler(bot, message):
         quote=True,
     )
 @Bot.on_callback_query(filters.regex('^help$'))
-async def help_handler(bot, query):
+async def help_cb_handler(bot, query):
     await query.message.edit(
         text=text_hp.format(message.from_user.first_name), 
         reply_markup=InlineKeyboardMarkup(buttons_hp),
@@ -117,14 +117,14 @@ buttons_ab = [[
     InlineKeyboardButton('❌', callback_data='close')
 ]]
 @Bot.on_message(filters.command('about') & filters.private)
-async def hp_handler(bot, message):
+async def ab_handler(bot, message):
     await message.reply_text(
         text=text_ab, 
         reply_markup=InlineKeyboardMarkup(buttons_ab), 
         quote=True,
     )
 @Bot.on_callback_query(filters.regex('^abot$'))
-async def help_handler(bot, query):
+async def abot_cb_handler(bot, query):
     await query.message.edit(
         text=text_ab, 
         reply_markup=InlineKeyboardMarkup(buttons_ab),
