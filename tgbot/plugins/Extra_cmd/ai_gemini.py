@@ -226,11 +226,11 @@ async def say_sell(bot, message: Message):
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
 #=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×
 captionim = """
-**__Your prompt__**
+<b>Your prompt</b>
 
-__{}__
+<i>{}</i>
  
-**__Powered by: @XBOTS_X | ©️ @GojoSatoru_Xbot__**
+<b>Powered by: @XBOTS_X | ©️ @GojoSatoru_Xbot</b>
 """
 buttons_imgin = [[
     InlineKeyboardButton('❌', callback_data='close')
