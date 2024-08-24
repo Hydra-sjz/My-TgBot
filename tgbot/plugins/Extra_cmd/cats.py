@@ -29,7 +29,7 @@ async def cat(c, m: Message):
                 cat_url, caption="meow", reply_markup=close_keyboard
             )
         else:
-            await m.reply_photo(cat_url, caption="meow", reply_markup=close_keyboard)
+            await m.reply_photo(cat_url, caption="meow", reply_markup=close_keyboard, quote=True)
     else:
         await m.reply_text("Failed to fetch cat picture 🙀")
 
