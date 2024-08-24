@@ -6,8 +6,8 @@ import zipfile
 from pyrogram import Client, filters, errors
 
 from tgbot.utils.helper.basic_helpers import progress
-
-@Client.on_message(filters.command(["downl"]))
+from tgbot import CMD
+@Client.on_message(filters.command(["downl"], CMD))
 async def download_f(bot, message):
     dl = await message.reply_text("Downloading to Server..")
     if not message.reply_to_message:
@@ -25,7 +25,7 @@ async def download_f(bot, message):
     f_name = os.path.join("downloads", filename)
     await dl.edit(file_txt.format(f_name))
 
-@Client.on_message(filters.command(["upload"]))
+@Client.on_message(filters.command(["upload"], CMD))
 async def upload_file(c, m):
     try:
         file = m.text.split(None, 1)[1]
@@ -61,7 +61,7 @@ def unzip_file(zip_path, extract_dir):
     return extracted_files
 
 
-@Client.on_message(filters.command(["unzi_all"]))
+@Client.on_message(filters.command(["unzi_all"], CMD))
 async def unzip_files(c, m):
     reply = m.reply_to_message if m.reply_to_message else None
     try:
