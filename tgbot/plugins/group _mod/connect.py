@@ -1,6 +1,6 @@
 from config import OWNER_ID
 
-from thbot import tgbot as Nandha, CMD
+from tgbot import tgbot as Nandha, CMD
 
 from pyrogram import filters
 from pyrogram.types import *
