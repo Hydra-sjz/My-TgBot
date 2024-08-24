@@ -99,3 +99,4 @@ imdbpy
 html5lib
 httpx[http2]
 gpytranslate
+gitpython
