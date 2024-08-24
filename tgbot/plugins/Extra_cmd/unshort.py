@@ -3,7 +3,7 @@ from pyrogram import Client, enums, filters, idle
 import re
 from requests import get
 import asyncio
-from tgbot import tgbot as app
+from tgbot import tgbot as app, CMD
 
 from pyrogram.types import InlineKeyboardButton as ikb, InlineKeyboardMarkup as ikm, Message
 from pyrogram.enums import ChatAction, ParseMode
@@ -12,7 +12,7 @@ shortener = pyshorteners.Shortener()
 from pyrogram.handlers import MessageHandler
 
 
-@app.on_message(filters.command(["short"]))
+@app.on_message(filters.command(["short"], CMD))
 async def short_urls(bot, message):
     await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
     if len(message.command) < 2:
@@ -49,7 +49,7 @@ async def short_urls(bot, message):
     except Exception as e:
         await message.reply_text(f"Either the link is already shortened or is invalid.")
 
-@app.on_message(filters.command(["unshort"]))
+@app.on_message(filters.command(["unshort"], CMD))
 async def unshort(bot, message):
     await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
     if len(message.command) < 2:
