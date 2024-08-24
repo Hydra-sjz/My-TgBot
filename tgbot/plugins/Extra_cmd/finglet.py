@@ -23,12 +23,12 @@ async def echo(bot, message):
     except IndexError:
         return await message.reply_text("Example:`/figlet Gojo`")
     kul_text, keyboard = figle(text)
-    await message.reply_text(f"Here is your Figlet.\n<pre>{kul_text}</pre>", quote=True, reply_markup=keyboard)
+    await message.reply_text(f"<blockquote>Here is your Figlet.</blockquote>\n<pre>{kul_text}</pre>", quote=True, reply_markup=keyboard)
 
 @app.on_callback_query(filters.regex("figlet"))
 async def figlet_handler(Client, query: CallbackQuery):
   try:
       kul_text, keyboard = figle(text)
-      await query.message.edit_text(f"Here is your Figlet.\n<pre>{kul_text}</pre>", reply_markup=keyboard)
+      await query.message.edit_text(f"<blockquote>Here is your Figlet.</blockquote>\n<pre>{kul_text}</pre>", reply_markup=keyboard)
   except Exception as e : 
       await message.reply(e)
