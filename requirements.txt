@@ -33,6 +33,7 @@ deezer-python
 spotipy
 lyricsgenius
 
+gtts
 bs4
 wget
 motor==2.5.1
