@@ -5,8 +5,8 @@ from tgbot import tgbot as Nandha, CMD
 from pyrogram.types import *
 from pyrogram.errors import UserNotParticipant
 from pyrogram import filters 
-from tgbot.utils.help.admin import *
-from tgbot.utils.help import mongodb
+from tgbot.utils.helper.admin import *
+from tgbot.utils.helper import mongodb
 db = mongodb["WARNING"]
 
 
