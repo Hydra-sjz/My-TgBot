@@ -37,7 +37,7 @@ async def newChat(_, message: Message):
 from asyncio import sleep
 
 
-from tgbot.utils.chat_db.MongoDb import LOGGER
+from tgbot.logging import LOGGER
 
 
 @Client.on_message(filters.command(["bc"]))
