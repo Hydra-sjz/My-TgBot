@@ -1,5 +1,5 @@
 
-from tgbot import anibot as Nandha, CMD
+from tgbot import tgbot as Nandha, CMD
 from tgbot.utils.help import mongodb
 
 from pyrogram import filters, enums
