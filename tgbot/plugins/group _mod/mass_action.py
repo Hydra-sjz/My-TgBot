@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram import enums
 from pyrogram.types import *
 from tgbot.utils.help.admin import *
-from tgbot import anibot as Nandha, CMD
+from tgbot import tgbot as Nandha, CMD
 
 
 
