@@ -1,7 +1,7 @@
 
 from tgbot import tgbot as Nandha, CMD
 from tgbot.utils.helper import mongodb
-
+from config import BOT_ID
 from pyrogram import filters, enums
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, UsernameInvalid
 from pyrogram.types import *
@@ -22,7 +22,7 @@ def fsub_chats():
 @Nandha.on_message(filters.incoming, group=100)
 async def ForceSub(_, message):
      chat_id = message.chat.id
-     bot_id = Nandha.me.id
+     bot_id = BOT_ID
      if chat_id in fsub_chats():
           x = db.find_one({"chat_id": chat_id})
           fsub_channel = x["channel"]
