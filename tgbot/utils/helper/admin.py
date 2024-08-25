@@ -1,5 +1,5 @@
 
-from tgbot import anibot as Nandha
+from tgbot import tgbot as Nandha
 
 from pyrogram import enums
 
