@@ -64,7 +64,7 @@ async def unmute_fsubbed(_, query):
 @Nandha.on_message(filters.command("fsub", CMD))
 async def ForceSubscribe(_, message):
       chat_id = message.chat.id
-      bot_id = Nandha.me.id
+      bot_id = BOT_ID
       user_id = message.from_user.id
       if message.chat.type == enums.ChatType.PRIVATE:
            return await message.reply_text("This Command Only work in Groups!") 
