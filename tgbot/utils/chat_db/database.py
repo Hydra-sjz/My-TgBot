@@ -1,4 +1,4 @@
-from tgbot.utils.chat_db.database import MongoDb as db
+from tgbot.utils.chat_db import MongoDb as db
 from datetime import datetime, timezone
 
 
