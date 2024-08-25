@@ -11,7 +11,7 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 
 import datetime
-from tgbot import tgbot as app
+from tgbot import tgbot as app, CMD
 
 
 
@@ -64,7 +64,7 @@ async def unpin_callbacc(client, CallbackQuery):
     )
 
 
-@app.on_message(filters.command(["unpinall"]))
+@app.on_message(filters.command(["unpinall"], CMD))
 async def unpin_command_handler(client, message):
     chat = message.chat
     chat_id = chat.id
