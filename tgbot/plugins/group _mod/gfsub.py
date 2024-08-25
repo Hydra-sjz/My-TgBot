@@ -1,13 +1,13 @@
 
 from tgbot import tgbot as Nandha, CMD
-from tgbot.utils.help import mongodb
+from tgbot.utils.helper import mongodb
 
 from pyrogram import filters, enums
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, UsernameInvalid
 from pyrogram.types import *
 
 
-from tgbot.utils.help.admin import is_admin, can_ban_members, can_change_info
+from tgbot.utils.helper.admin import is_admin, can_ban_members, can_change_info
 
 db = mongodb.FSUB #db
 
