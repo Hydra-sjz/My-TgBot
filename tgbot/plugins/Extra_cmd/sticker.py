@@ -129,7 +129,7 @@ async def kang(client, message: Message):
         return print(e)
 #-------
     packnum = 0
-    packname = "f" + str(message.from_user.id) + "_by_" + @GojoSatoru_Xbot
+    packname = "f" + str(message.from_user.id) + "_by_" + "@GojoSatoru_Xbot"
     limit = 0
     try:
         while True:
