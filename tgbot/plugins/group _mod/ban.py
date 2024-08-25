@@ -6,7 +6,7 @@ import requests
 import asyncio
 
 from tgbot import tgbot as Nandha, CMD
-from tgbot.utils.help.admin import *
+from tgbot.utils.helper.admin import *
 
 from pyrogram.types import *
 from pyrogram import filters
