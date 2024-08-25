@@ -146,7 +146,6 @@ Hi Sudo Bro 🤡🤣
 @Bot.on_callback_query(filters.regex("^BUTTON$"))
 async def botCallbacks(_, CallbackQuery: CallbackQuery):
     clicker_user_id = CallbackQuery.from_user.id
-    user_id = CallbackQuery.message.reply_to_message.from_user.id
     if CallbackQuery.data == "sudo":
         if clicker_user_id not in SUDO_USERS:
             return await CallbackQuery.answer(
