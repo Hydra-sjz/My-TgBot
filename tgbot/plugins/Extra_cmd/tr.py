@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import *
-from tgbot import tgbot as app
+from tgbot import tgbot as app, CMD
 from gpytranslate import Translator
 
 #.......
