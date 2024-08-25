@@ -5,28 +5,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from config import DB_URL
 
 
-import logging
-import os
-from logging.handlers import RotatingFileHandler
-
-# removing old logs file if they exist.
-try: os.remove("logs.txt")
-except: pass
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="[%(asctime)s - %(levelname)s] - %(name)s - %(message)s",
-    datefmt="%d-%b-%y %H:%M:%S",
-    handlers=[
-        RotatingFileHandler("logs.txt", mode="w+", maxBytes=5000000, backupCount=10),
-        logging.StreamHandler()])
-
-logging.getLogger("pyrogram").setLevel(logging.ERROR)
-
-
-def LOGGER(name: str) -> logging.Logger:
-    return logging.getLogger(name)
-
 # from one string uri you can create multiple databases for different projects/bots. within each database you can store multiple collections, and within each collection you can store multiple documents.
 
 
