@@ -3,7 +3,7 @@ from sys import exit as exiter
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from config import DB_URL
-
+from tgbot.logging import LOGGER
 
 # from one string uri you can create multiple databases for different projects/bots. within each database you can store multiple collections, and within each collection you can store multiple documents.
 
