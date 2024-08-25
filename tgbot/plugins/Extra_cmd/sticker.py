@@ -154,7 +154,7 @@ async def kang(client, message: Message):
                     + "_"
                     + str(message.from_user.id)
                     + "_by_"
-                    + @GojoSatoru_Xbot
+                    + "@GojoSatoru_Xbot"
                 )
                 limit += 1
                 continue
