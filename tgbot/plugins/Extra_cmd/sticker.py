@@ -15,7 +15,7 @@ from pyrogram.errors import (
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from tgbot import tgbot as app, CMD
-from config import BOT_USERNAME
+
 #from PROFESSOR.utils.errors import capture_err
 
 from tgbot.utils.helper.files import (
@@ -173,7 +173,7 @@ async def kang(client, message: Message):
         )
     except (PeerIdInvalid, UserIsBlocked):
         keyboard = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Start", url=f"t.me/{BOT_USERNAME}")]]
+            [[InlineKeyboardButton(text="Start", url=f"t.me/GojoSatoru_Xbot")]]
         )
         await msg.edit(
             "You Need To Start A Private Chat With Me.",
