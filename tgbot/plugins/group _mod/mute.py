@@ -2,7 +2,7 @@ from config import DEVS, BOT_ID
 import requests
 import random
 from tgbot import tgbot as Nandha
-from tgbot.utils.help.admin import *
+from tgbot.utils.helper.admin import *
 from pyrogram.types import *
 from pyrogram import filters
 
