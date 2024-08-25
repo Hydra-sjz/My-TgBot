@@ -1,6 +1,6 @@
 import logging
 import asyncio
-from tgbot import tgbot as Bot, LOG_CHANNEL_ID
+from tgbot import tgbot as Bot, LOG_CHANNEL_ID, SUDO_USERS
 
 from pyrogram import filters, enums
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
@@ -41,7 +41,8 @@ text_st = (
 buttons_st = [[
     InlineKeyboardButton('Channel 📢', url='https://t.me/XBOTS_X'),
     InlineKeyboardButton('Commands 📚', callback_data='help'),
-    InlineKeyboardButton('About 💡', callback_data='abot')
+    InlineKeyboardButton('About 💡', callback_data='abot'),
+    InlineKeyboardButton('Sudo 👥', callback_data='sudo')
     ],[
     InlineKeyboardButton('❌', callback_data='close')
 ]]
@@ -84,7 +85,6 @@ text_hp = (
     "Click the button below to discover my commands!</blockquote>"
 )
 buttons_hp = [[
-    InlineKeyboardButton('⬅️', callback_data='home'),
     InlineKeyboardButton('❌', callback_data='close')
 ]]
 @Bot.on_message(filters.command('help') & filters.private)
@@ -132,13 +132,28 @@ async def abot_cb_handler(bot, query):
         disable_web_page_preview=True
     )
 
-
-#=================================
+#==============CLOSE===================
 @Bot.on_callback_query(filters.regex('^close$'))
 async def close_cb(bot, callback):
-    await callback.answer("👋Hey i am Gojo Satoru 𝕏 Bot")
+    await callback.answer("❌Closed the Module❌")
     await callback.message.delete()
     await callback.message.reply_to_message.delete()
+#=================
+SUDO_TEXT = """
+Hi Sudo Bro 🤡🤣
+"""
+
+@Bot.on_callback_query(filters.regex("^BUTTON$"))
+async def botCallbacks(_, CallbackQuery: CallbackQuery):
+    clicker_user_id = CallbackQuery.from_user.id
+    user_id = CallbackQuery.message.reply_to_message.from_user.id
+    if CallbackQuery.data == "sudo":
+        if clicker_user_id not in SUDO_USERS:
+            return await CallbackQuery.answer(
+                "You are not in the sudo user list.", show_alert=True)              
+        await CallbackQuery.edit_message_text(
+            SUDO_TEXT, reply_markup=InlineKeyboardMarkup(buttons_st))
+
 
 
 
