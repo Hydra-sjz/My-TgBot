@@ -8,7 +8,7 @@ from pyrogram.types import *
 from tgbot import tgbot as app, CMD
 
 button = InlineKeyboardMarkup([[
-            InlineKeyboardButton("❌", callback_data="close_data")
+            InlineKeyboardButton("❌", callback_data="close")
                               ]])
 
 
@@ -88,9 +88,9 @@ async def take_ss(_, message: Message):
         m = await m.edit("**ᴜᴘʟᴏᴀᴅɪɴɢ...**")
 
         if not full:
-            await message.reply_photo(photo, reply_markup=button)
+            await message.reply_photo(photo, reply_markup=button, quote=True)
         else:
-            await message.reply_photo(photo, reply_markup=button)
+            await message.reply_photo(photo, reply_markup=button, quote=True)
         await m.delete()
     except Exception as e:
         await m.edit(str(e))
