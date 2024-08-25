@@ -5,7 +5,7 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
 from tgbot import tgbot as bot
 from tgbot.utils.chat_db import database
  
-from tgbot.utils.chat_db. import MongoDb
+from tgbot.utils.chat_db import MongoDb
 # from bot.helpers.decorators import ratelimiter
 
 
