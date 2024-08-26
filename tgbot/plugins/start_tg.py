@@ -143,15 +143,15 @@ SUDO_TEXT = """
 Hi Sudo Bro 🤡🤣
 """
 
-@Bot.on_callback_query(filters.regex("^BUTTON$"))
+@Bot.on_callback_query(filters.regex("^sudo$"))
 async def botCallbacks(_, CallbackQuery: CallbackQuery):
     clicker_user_id = CallbackQuery.from_user.id
-    if CallbackQuery.data == "sudo":
-        if clicker_user_id not in SUDO_USERS:
-            return await CallbackQuery.answer(
-                "You are not in the sudo user list.", show_alert=True)              
-        await CallbackQuery.edit_message_text(
-            SUDO_TEXT, reply_markup=InlineKeyboardMarkup(buttons_st))
+    if clicker_user_id not in SUDO_USERS:
+        return await CallbackQuery.answer(
+            "You are not in the sudo user list.", show_alert=True)              
+    await CallbackQuery.edit_message_text(
+        SUDO_TEXT, reply_markup=InlineKeyboardMarkup(buttons_st))
+        
 
 
 
