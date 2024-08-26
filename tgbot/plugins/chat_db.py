@@ -7,7 +7,10 @@ from tgbot.utils.chat_db import database
  
 from tgbot.utils.chat_db import MongoDb
 # from bot.helpers.decorators import ratelimiter
+from asyncio import sleep
 
+
+from tgbot.logging import LOGGER
 
 @Client.on_message(filters.command("chatst"))
 async def dbstabbts(_, message: Message):
@@ -34,10 +37,7 @@ async def newChat(_, message: Message):
         if new_user.id == bot.me.id:
             await database.saveChat(chatid)
             
-from asyncio import sleep
 
-
-from tgbot.logging import LOGGER
 
 
 @Client.on_message(filters.command(["bc"]))
