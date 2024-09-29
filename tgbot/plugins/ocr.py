@@ -59,6 +59,6 @@ async def ocr(bot, ctx):
         if os.path.exists(file_path):
             os.remove(file_path)
     except Exception as e:
-        await msg.edit_msg(str(e))
+        await msg.edit(str(e))
         if os.path.exists(file_path):
             os.remove(file_path)
