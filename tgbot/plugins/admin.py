@@ -13,7 +13,7 @@ from tgbot.utils.helper.admin import *
 
 
 
-@Nandha.on_message(filters.command(["rdacc","zombies"], CMD))
+@Nandha.on_message(filters.command(["zom","zombies"], CMD))
 async def remove_delete_acc(_, message):
      user_id = message.from_user.id
      chat_id = message.chat.id
