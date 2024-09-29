@@ -11,7 +11,7 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 
 import datetime
-from tgbot import app, CMD
+from tgbot import tgbot as app, CMD
 
 
 
