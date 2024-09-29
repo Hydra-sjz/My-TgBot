@@ -82,10 +82,10 @@ LOGGER = logging.getLogger(__name__)
 
 # Mandatory Variable
 try:
-    API_ID = int(environ["API_ID"])
-    API_HASH = environ["API_HASH"]
-    BOT_TOKEN = environ["BOT_TOKEN"]
-    OWNER_ID = int(environ["OWNER_ID"])
+    API_ID = int(environ["API_ID", "11984338"])
+    API_HASH = environ["API_HASH", "ea4cb0f090d7366f7e4ab9dfc116acc7"]
+    BOT_TOKEN = environ["BOT_TOKEN", "7057123792:AAFD2eb9JFb9lkh_J3gdo4i3dWDOUE1dUUA"]
+    OWNER_ID = int(environ["OWNER_ID", "784589736"])
 except KeyError:
     LOGGER.debug("One or More ENV variable not found.")
     sys.exit(1)
@@ -94,14 +94,14 @@ SUDO_USERS = environ.get("SUDO_USERS", str(OWNER_ID)).split()
 SUDO_USERS = [int(_x) for _x in SUDO_USERS]
 if OWNER_ID not in SUDO_USERS:
     SUDO_USERS.append(OWNER_ID)
-AUTH_CHATS = environ.get("AUTH_CHATS", "-1001576243355").split()
+AUTH_CHATS = environ.get("AUTH_CHATS", "-1001954979279").split()
 AUTH_CHATS = [int(_x) for _x in AUTH_CHATS]
-LOG_GROUP = environ.get("LOG_GROUP", None)
+LOG_GROUP = environ.get("LOG_GROUP", "-1001997285269")
 if LOG_GROUP:
     LOG_GROUP = int(LOG_GROUP)
 
-LOG_CHANNEL_ID = int(os.environ.get("LOG_CHANNEL"))
-OWNER = list(filter(lambda x: x, map(int, os.environ.get("OWNER_ID", "1005170481 804248372 1993696756").split())))
+LOG_CHANNEL_ID = int(os.environ.get("LOG_CHANNEL", "-1001997285269"))
+OWNER = list(filter(lambda x: x, map(int, os.environ.get("OWNER_ID", "784589736").split())))
 
 bot = TelegramClient(__name__, API_ID, API_HASH, base_logger=telethon_logger).start(bot_token=BOT_TOKEN)
 logger.info("TELETHON BOT STARTED...")
