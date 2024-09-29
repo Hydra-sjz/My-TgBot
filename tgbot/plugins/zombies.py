@@ -15,8 +15,8 @@ stopProcess = False
 
 # ------------------------------------------------------------------------------- #
 
-@app.on_message(filters.command(["zombies","clean"], CMD))
-async def remove(client, message):
+@app.on_message(filters.command(["zombi","clean"], CMD))
+async def removez(client, message):
   global stopProcess
   try: 
     try:
@@ -75,7 +75,7 @@ async def remove(client, message):
 # ------------------------------------------------------------------------------- #
 
 @app.on_message(filters.command(["admins","staff"], CMD))
-async def admins(client, message):
+async def adhmins(client, message):
   try: 
     adminList = []
     ownerList = []
@@ -123,7 +123,7 @@ async def admins(client, message):
 # ------------------------------------------------------------------------------- #
 
 @app.on_message(filters.command(["bots"], CMD))
-async def bots(client, message):  
+async def nbots(client, message):  
   try:    
     botList = []
     async for bot in app.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.BOTS):
